@@ -17,7 +17,13 @@ db.sqlite3
 db.sqlite3-journal
 media
 
-#intelliJ project files
-*.imi
-.idea/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
 
