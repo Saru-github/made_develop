@@ -16,6 +16,7 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media
+secrets.json
 
 
 ### IntelliJ IDEA ###
@@ -26,4 +27,5 @@ media
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+
 
