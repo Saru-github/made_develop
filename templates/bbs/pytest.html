@@ -1,46 +1,48 @@
 <html>
+
 <head>
+
+    <title>
+
+        Read CSV with Pandas using PyScript
+
+    </title>
+
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+    <!---pyodide-->
+
     <py-env>
-        - numpy
-        - matplotlib
+        - pandas
     </py-env>
+
 </head>
 
 <body>
-<py-script> print('Hello world!') </py-script>
-<h1>Let's plot random numbers</h1>
-<div id="plot"></div>
-<py-script output="plot">
-import numpy as np
-import matplotlib.pyplot as plt
 
-def make_x_and_y(n):
-    x = np.random.randn(n)
-    y = np.random.randn(n)
-    return x, y
+<h1>Read CSV with Pandas using PyScript</h1>
 
-x, y = make_x_and_y(n=1000)
+<p id="csv"></p>
 
-fig, ax = plt.subplots()
-ax.scatter(x, y)
-fig
+<py-script>
+
+    import pandas as pd
+
+    from pyodide.http import open_url
+
+    url_content = open_url("https://raw.githubusercontent.com/Saru-github/mysite/master/templates/python/bike-sharing-demand/train.csv")
+
+    df = pd.read_csv(url_content)
+
+    #print(df)
+
+    csv = Element('csv')
+
+    csv.write(df.head())
+
 </py-script>
-<py-repl>
-import numpy as np
-import matplotlib.pyplot as plt
 
-def make_x_and_y(n):
-x = np.random.randn(n)
-y = np.random.randn(n)
-return x, y
-
-x, y = make_x_and_y(n=1000)
-
-fig, ax = plt.subplots()
-ax.scatter(x, y)
-fig
-</py-repl>
 </body>
+
 </html>
