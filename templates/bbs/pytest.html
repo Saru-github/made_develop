@@ -28,8 +28,13 @@ ax.scatter(x, y)
 fig
 </py-script>
 <py-repl>
-        import matplotlib.pyplot as plt
-from data import make_x_and_y
+import numpy as np
+import matplotlib.pyplot as plt
+
+def make_x_and_y(n):
+x = np.random.randn(n)
+y = np.random.randn(n)
+return x, y
 
 x, y = make_x_and_y(n=1000)
 
