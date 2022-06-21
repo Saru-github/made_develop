@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 import pandas as pd
+from django.http import HttpResponse
 
 from ..models import Question
 from django.db.models import Q
@@ -25,12 +26,13 @@ def index(request):
     page_obj = paginator.get_page(page)
     context = {'question_list': page_obj, 'page': page, 'kw': kw}
     ## return render(request, 'bbs/question_list.html', context)
-    return render(request, 'bbs/pytest.html.html', context)
+    return render(request, 'bbs/pytest.html', context)
 
 def detail(request, question_id):
     question = Question.objects.get(id=question_id)
     context = {'question': question}
     return render(request,'bbs/question_detail.html', context)
+
 
 
 
