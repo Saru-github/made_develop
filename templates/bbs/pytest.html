@@ -5,8 +5,6 @@
     <py-env>
         - numpy
         - matplotlib
-        - paths:
-            - ./data.py
     </py-env>
 </head>
 
@@ -15,8 +13,13 @@
 <h1>Let's plot random numbers</h1>
 <div id="plot"></div>
 <py-script output="plot">
+import numpy as np
 import matplotlib.pyplot as plt
-from data import make_x_and_y
+
+def make_x_and_y(n):
+    x = np.random.randn(n)
+    y = np.random.randn(n)
+    return x, y
 
 x, y = make_x_and_y(n=1000)
 
