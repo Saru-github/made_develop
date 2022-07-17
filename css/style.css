@@ -123,5 +123,23 @@ section .contents .card {
 }
 section .contents .card .thumb-img {
   width: 100%;
-  height: 80%;
+  height: 70%;
+}
+section .contents .card .card-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+section .contents .card .card-text .card-img {
+  margin-left: 10px;
+  margin-right: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+section .contents .card .card-text .card-text-title {
+  margin-bottom: 10px;
+}
+section .contents .card .card-text .card-text-content {
+  color: grey;
 }
