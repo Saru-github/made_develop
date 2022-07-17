@@ -110,15 +110,21 @@ section{
   }
   .contents{
 
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
     .card{
-      width: 80%;
-      border: solid black 1px;
-      display: flex;
-      .card{
         width: 25%;
-        height: 25%;
-        border: solid black 1px;
+        padding: 20px;
+        text-align: center;
+      .thumb-img{
+          width: 100%;
+          height: 80%;
+      }
+      .card-text{
       }
     }
+    
   }
 }

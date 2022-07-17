@@ -107,15 +107,21 @@ section aside .aside-menu-text {
   margin-left: 20px;
   color: gray;
 }
-section .contents .card {
+section .contents {
   width: 80%;
-  border: solid black 1px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-bottom: 10px;
 }
-section .contents .card .card {
+section .contents .card {
   width: 25%;
-  height: 25%;
-  border: solid black 1px;
+  padding: 20px;
+  text-align: center;
+}
+section .contents .card .thumb-img {
+  width: 100%;
+  height: 80%;
 }
