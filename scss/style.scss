@@ -117,11 +117,26 @@ section{
     .card{
         width: 25%;
         padding: 20px;
-      .thumb-img{
+        
+
+      .card-thumb{
+        position: relative;
+        .thumb-img{
           width: 100%;
           height: 70%;
+        }
+        .thumb-time{
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+          color: white;
+          background-color: rgba(0, 0, 0, 0.833);
+
+        }
       }
+      
       .card-text{
+        margin-top: 20px;
         display: flex;
         .card-img{
           margin-left: 10px;
