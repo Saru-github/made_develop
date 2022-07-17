@@ -31,7 +31,7 @@ header .header-right {
   margin-right: 20px;
 }
 header .header-right .header-right-img {
-  margin-right: 10px;
+  width: 20%;
   height: 24px;
 }
 
