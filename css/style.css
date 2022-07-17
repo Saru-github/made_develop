@@ -119,7 +119,6 @@ section .contents {
 section .contents .card {
   width: 25%;
   padding: 20px;
-  text-align: center;
 }
 section .contents .card .thumb-img {
   width: 100%;
@@ -138,8 +137,14 @@ section .contents .card .card-text .card-img {
           align-items: center;
 }
 section .contents .card .card-text .card-text-title {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
-section .contents .card .card-text .card-text-content {
+section .contents .card .card-text .card-text-author {
+  color: grey;
+  font-size: 15px;
+}
+section .contents .card .card-text .card-text-viewsAnddate {
+  margin-top: 5px;
+  font-size: 10px;
   color: grey;
 }
