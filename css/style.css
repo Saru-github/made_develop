@@ -35,38 +35,75 @@ header .header-right .header-right-img {
   height: 24px;
 }
 
-.aside {
+aside {
   margin-top: 30px;
   margin-left: 20px;
-  width: 240px;
-  height: 1056px;
-}
-.aside .aside-menu-first {
+  width: 20%;
+  height: 1041px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+aside .aside-menu-first {
   margin-bottom: 20px;
 }
-.aside .aside-menu-second {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+aside .aside-menu-second {
   border-top: solid gray 1px;
   margin-bottom: 20px;
 }
-.aside .aside-menu-sub {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+aside .aside-menu-sub {
   border-top: solid gray 1px;
 }
-.aside .aside-menu-sub .sub-text {
+aside .aside-menu-sub .sub-text {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  color: gray;
+}
+aside .aside-menu-sub .sub-profile {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 240px;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+aside .aside-menu-sub .sub-profile .aside-menu-sub-img {
+  width: 24px;
+  margin-right: 50px;
+  margin-left: 20px;
+}
+aside .aside-menu-third {
+  border-top: solid gray 1px;
+  margin-bottom: 20px;
+}
+aside .aside-menu-third .sub-text {
+  padding-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  color: gray;
+}
+aside .aside-menu-fourth {
+  border-top: solid gray 1px;
+  margin-bottom: 20px;
+  border-bottom: solid gray 1px;
+}
+aside .aside-menu-text {
+  margin-top: 20px;
   margin-left: 20px;
   color: gray;
+}
+
+section {
+  width: 80%;
+  border: solid black 1px;
 }
