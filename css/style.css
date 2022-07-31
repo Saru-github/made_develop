@@ -59,9 +59,25 @@ section aside {
 section aside .aside-menu-first {
   margin-bottom: 20px;
 }
+section aside .aside-menu-first .aside-menu-first-button {
+  margin-bottom: 10px;
+  margin-left: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+section aside .aside-menu-first .aside-menu-first-button .aside-menu-sub-img {
+  margin-right: 20px;
+}
 section aside .aside-menu-second {
-  border-top: solid gray 1px;
   margin-bottom: 20px;
+}
+section aside .aside-menu-second .aside-menu-second-button {
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+section aside .aside-menu-second .aside-menu-second-button .aside-menu-sub-img {
+  margin-right: 20px;
 }
 section aside .aside-menu-sub {
   border-top: solid gray 1px;
@@ -97,10 +113,24 @@ section aside .aside-menu-third .sub-text {
   margin-bottom: 10px;
   color: gray;
 }
+section aside .aside-menu-third .aside-menu-third-button {
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+section aside .aside-menu-third .aside-menu-third-button .aside-menu-sub-img {
+  margin-right: 20px;
+}
 section aside .aside-menu-fourth {
   border-top: solid gray 1px;
   margin-bottom: 20px;
-  border-bottom: solid gray 1px;
+  padding-top: 20px;
+}
+section aside .aside-menu-fourth .aside-menu-fourth-button {
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+section aside .aside-menu-fourth .aside-menu-fourth-button .aside-menu-sub-img {
+  margin-right: 20px;
 }
 section aside .aside-menu-text {
   margin-top: 20px;
