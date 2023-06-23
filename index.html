@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="form.serializer.js"></script>
+</head>
+<body>
+    <form id ="testForm">
+        <label>Id
+            <input type="text" name="ID" value="32131">
+        </label>
+        <br>
+        <br>
+        <label>Pw
+            <input type="text" name="PW" value="3213">
+        </label>
+        <br>
+        <br>
+        <label>UPPER ID
+            <input type="text" name="upperId" value="upperId" data-serialize-case="upper">
+        </label>
+        <br>
+        <br>
+        <label>lower pw
+            <input type="text" name="lowerPw" value="lowerPw" data-serialize-case="lower">
+        </label>
+        <br>
+        <br>
+        <br>
+        <dt>UPPER , LINE</dt>
+        <dd>
+            <span class="inputbox">
+                <textarea name="upperLine" id="upperLine" data-serialize-delimiter="line" data-serialize-max=10 data-serialize-case="upper">upPER
+UPper</textarea>
+            </span>
+        </dd>
+        <dt>lower, line</dt>
+        <dd>
+            <span class="inputbox">
+                <textarea name="lowerLine" id="lowerLine" data-serialize-delimiter="line" data-serialize-max=1000 data-serialize-case="lower">LOwer
+loWER</textarea>
+            </span>
+        </dd>
+        <dt>UPPER , COMMA</dt>
+        <dd>
+            <span class="inputbox">
+                <textarea name="upperComma" id="upperComma" data-serialize-delimiter="comma" data-serialize-max=10 data-serialize-case="upper">upPER, UPper</textarea>
+            </span>
+        </dd>
+        <dt>lower , comma</dt>
+        <dd>
+            <span class="inputbox">
+                <textarea name="lowerComma" id="lowerComma" data-serialize-delimiter="comma" data-serialize-max=10 data-serialize-case="lower">lowER, LOWer</textarea>
+            </span>
+        </dd>
+    </form>
+    <button type="button" onclick="alertPrintLog()">변환!!</button>
+
+</body>
+<script>
+    var alertPrintLog = () => {
+        var formData = JSON.stringify(FormSerializer.serialize(document.getElementById('testForm')), null, 2);
+        console.log(formData);
+    }
+</script>
+</html>
