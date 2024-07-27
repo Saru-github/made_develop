@@ -1,0 +1,213 @@
+{% extends 'bbs/base.html' %}
+{% load bbs_filter %}
+{% block content %}
+
+{#<div class="container my-3">#}
+{#    <div class="row my-3">#}
+{#        <div class="col-6">#}
+{#            <a href="{% url 'bbs:question_create' %}" class="btn btn-primary">글쓰기</a>#}
+{#        </div>#}
+{#        <div class="col-6">#}
+{#            <div class="input-group">#}
+{#                <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}">#}
+{#                <div class="input-group-append">#}
+{#                    <button class="btn btn-outline-secondary" type="button" id="btn_search">찾기</button>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <table class="table">#}
+{#        <thead>#}
+{#        <tr class="text-center table-dark">#}
+{#            <th>번호</th>#}
+{#            <th style="width:50%">제목</th>#}
+{#            <th>글쓴이</th>#}
+{#            <th>작성일시</th>#}
+{#        </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#        {% if question_list %}#}
+{#            {% for question in question_list %}#}
+{#                <tr class="text-center">#}
+{#                    <td>#}
+{#                        <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->#}
+{#                        {{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}#}
+{#                    </td>#}
+{#                    <td class="text-start">#}
+{#                        <a href="{% url 'bbs:detail' question.id %}">{{ question.subject }}</a>#}
+{#                        {% if question.answer_set.count > 0 %}#}
+{#                            <span class="text-danger small mx-2">{{ question.answer_set.count }}</span>#}
+{#                        {% endif %}#}
+{#                    <td>{{ question.author.username }}</td>  <!-- 글쓴이 추가 -->#}
+{#                    <td>{{ question.create_date }}</td>#}
+{#                </tr>#}
+{#            {% endfor %}#}
+{#            {% else %}#}
+{#            <tr>#}
+{#                <td colspan="4">질문이 없습니다.</td>#}
+{#            </tr>#}
+{#        {% endif %}#}
+{#        </tbody>#}
+{#    </table>#}
+{#    <!-- 페이징처리 시작 -->#}
+{#    <ul class="pagination justify-content-center">#}
+{#        <!-- 이전페이지 -->#}
+{#        {% if question_list.has_previous %}#}
+{#            <li class="page-item">#}
+{#                <a class="page-link" data-page="{{ question_list.previous_page_number }}"#}
+{#                   href="javascript:void(0)">이전</a>#}
+{#            </li>#}
+{#        {% else %}#}
+{#            <li class="page-item disabled">#}
+{#                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>#}
+{#            </li>#}
+{#        {% endif %}#}
+{#        <!-- 페이지리스트 -->#}
+{#        {% for page_number in question_list.paginator.page_range %}#}
+{#            {% if page_number >= question_list.number|add:-2 and page_number <= question_list.number|add:2 %}#}
+{#            {% if page_number == question_list.number %}#}
+{#                <li class="page-item active" aria-current="page">#}
+{#                    <a class="page-link" data-page="{{ page_number }}"#}
+{#                       href="javascript:void(0)">{{ page_number }}</a>#}
+{#                </li>#}
+{#            {% else %}#}
+{#                <li class="page-item">#}
+{#                    <a class="page-link" data-page="{{ page_number }}"#}
+{#                       href="javascript:void(0)">{{ page_number }}</a>#}
+{#                </li>#}
+{#            {% endif %}#}
+{#            {% endif %}#}
+{#        {% endfor %}#}
+{#        <!-- 다음페이지 -->#}
+{#        {% if question_list.has_next %}#}
+{#            <li class="page-item">#}
+{#                <a class="page-link" data-page="{{ question_list.next_page_number }}"#}
+{#                   href="javascript:void(0)">다음</a>#}
+{#            </li>#}
+{#        {% else %}#}
+{#            <li class="page-item disabled">#}
+{#            <li class="page-item disabled">#}
+{#                <a class="page-link" tabindex="-1" aria-disabled="true"#}
+{#                   href="javascript:void(0)">다음</a>#}
+{#            </li>#}
+{#        {% endif %}#}
+{#    </ul>#}
+{#    <!-- 페이징처리 끝 -->#}
+{#    <form id="searchForm" method="get" action="{% url 'index' %}">#}
+{#        <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">#}
+{#        <input type="hidden" id="page" name="page" value="{{ page }}">#}
+{#    </form>#}
+{#</div>#}
+<h1>bike Sharing hist 시각화 그래프</h1>
+
+<p id="csv"></p>
+
+<py-script>
+from pyodide.http import open_url
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import mean_absolute_error, mean_squared_error, mean_squared_log_error
+from sklearn.linear_model import LinearRegression, Ridge, Lasso
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.model_selection import train_test_split
+
+url_content = open_url("https://raw.githubusercontent.com/Saru-github/mysite/master/templates/python/bike-sharing-demand/train.csv")
+bike_df = pd.read_csv(url_content)
+
+bike_df['datetime'] = pd.to_datetime(bike_df['datetime'])
+bike_df['year'] = bike_df['datetime'].apply(lambda x: x.year)
+bike_df['mbonth'] = bike_df['datetime'].apply(lambda x: x.month)
+bike_df['day'] = bike_df['datetime'].apply(lambda x: x.day)
+bike_df['hour'] = bike_df['datetime'].apply(lambda x: x.hour)
+bike_df_new = bike_df.drop(['datetime','casual','registered'],axis=1)
+bike_df_new['count'].hist()
+
+def rmsle(y_test,pred):
+    log_y = np.log1p(y_test)
+    log_pred = np.log1p(pred)
+    squared_log_error1 = (log_y- log_pred)**2
+    mean_squared_log_error1 = np.mean(squared_log_error1)
+    rmsle_result = np.sqrt(mean_squared_log_error1)
+
+    return rmsle_result
+
+def rmse(y_test, pred):
+    rmse_result = np.sqrt(mean_squared_error(y_test,pred))
+    return rmse_result
+
+def get_eval_index(y_test,pred):
+    rmsle_eval = rmsle(y_test,pred)
+    rmse_eval = rmse(y_test,pred)
+    mae_eval = mean_absolute_error(y_test,pred)
+    print('RMSLE:{0:.4f}, RMSE:{1:.4f}, MAE:{2:.4f}'.format(rmsle_eval,rmse_eval,
+                                                           mae_eval))
+
+from sklearn.model_selection import train_test_split
+
+y_target = bike_df_new['count']
+X_ftrs = bike_df_new.drop(['count'], axis=1)
+
+xtrain, xval, ytrain, yval = train_test_split(X_ftrs, y_target,
+                                             test_size=0.3,
+                                             random_state=0)
+
+lr_reg = LinearRegression()
+lr_reg.fit(xtrain,ytrain)
+pred_lr_reg = lr_reg.predict(xval)
+
+get_eval_index(yval, pred_lr_reg)
+
+
+check_df = pd.DataFrame(yval.values, columns=['actual_y'])
+check_df['pred_y'] = pred_lr_reg
+check_df['diff'] = np.abs(check_df['pred_y']-check_df['actual_y'])
+check_df.sort_values(by='diff', ascending=False).reset_index()[:10]
+
+yval.hist()
+
+log1p_yval = np.log1p(yval)
+log1p_yval.hist()
+y_target_log1p = np.log1p(y_target)
+from sklearn.model_selection import train_test_split
+y_target_log1p = np.log1p(y_target)
+X_ftrs = bike_df_new.drop(['count'], axis=1)
+xtrain, xval, ytrain_log, yval_log = train_test_split(X_ftrs, y_target_log1p,
+                                             test_size=0.3,
+                                             random_state=0)
+lr_reg = LinearRegression()
+lr_reg.fit(xtrain,ytrain_log)
+pred_lr1_reg = lr_reg.predict(xval)
+yval_exp = np.expm1(yval_log)
+pred_lr1_exp = np.expm1(pred_lr1_reg)
+get_eval_index(yval_exp, pred_lr1_exp)
+coef = pd.Series(lr_reg.coef_, index=X_ftrs.columns)
+coef_sorted = coef.sort_values(ascending=False)
+sns.barplot(x=coef_sorted.values, y=coef_sorted.index)
+</py-script>
+<py-repl>
+
+</py-repl>
+{% endblock %}
+{% block script %}
+    <script type='text/javascript'>
+        const page_elements = document.getElementsByClassName("page-link");
+        Array.from(page_elements).forEach(function(element) {
+            element.addEventListener('click', function() {
+                document.getElementById('page').value = this.dataset.page;
+                document.getElementById('searchForm').submit();
+            });
+        });
+        const btn_search = document.getElementById("btn_search");
+        btn_search.addEventListener('click', function() {
+            document.getElementById('kw').value = document.getElementById('search_kw').value;
+            document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+            document.getElementById('searchForm').submit();
+        });
+
+    </script>
+{% endblock %}
